@@ -23,7 +23,7 @@ public class LoginTest extends BaseTest {
 
         InventoryPage inventoryPage = new LoginPage()
                 .openPage()
-                .enterUsername("standard_user")
+                .enterUsername("standard_us2er")
                 .enterPassword("secret_sauce")
                 .clickLogin()
                 .shouldBeOpened();
