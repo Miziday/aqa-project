@@ -1,10 +1,10 @@
 package tests;
 
-import base.BaseUiTest;
+import ui.base.BaseUiTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pages.InventoryPage;
-import pages.LoginPage;
+import ui.pages.InventoryPage;
+import ui.pages.LoginPage;
 
 public class LoginUiTest extends BaseUiTest {
 

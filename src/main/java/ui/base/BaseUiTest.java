@@ -1,4 +1,4 @@
-package base;
+package ui.base;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;

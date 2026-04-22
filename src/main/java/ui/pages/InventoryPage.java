@@ -1,4 +1,4 @@
-package pages;
+package ui.pages;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
