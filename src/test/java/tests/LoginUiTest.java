@@ -1,12 +1,12 @@
 package tests;
 
-import base.BaseTest;
+import base.BaseUiTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.InventoryPage;
 import pages.LoginPage;
 
-public class LoginTest extends BaseTest {
+public class LoginUiTest extends BaseUiTest {
 
     @DataProvider
     public Object[][] invalidDataProvider() {
@@ -23,7 +23,7 @@ public class LoginTest extends BaseTest {
 
         InventoryPage inventoryPage = new LoginPage()
                 .openPage()
-                .enterUsername("standard_us2er")
+                .enterUsername("standard_user")
                 .enterPassword("secret_sauce")
                 .clickLogin()
                 .shouldBeOpened();

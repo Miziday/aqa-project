@@ -6,7 +6,7 @@ import config.ConfigReader;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.testng.annotations.BeforeMethod;
 
-public class BaseTest {
+public class BaseUiTest {
 
     @BeforeMethod
     public void setup() {

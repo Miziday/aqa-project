@@ -3,10 +3,15 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="C:/Users/kunts/JavaProjects/PetProject/src/test/java/tests">
         <classes>
-            <class name="tests.LoginTest">
+            <class name="tests.LoginUiTest">
                 <methods>
                     <include name="successfulLoginTest"/>
                     <include name="invalidLoginTest"/>
+                </methods>
+            </class>
+            <class name="tests.FirstApiTest">
+                <methods>
+                    <include name="firstApiTest"/>
                 </methods>
             </class>
         </classes>
