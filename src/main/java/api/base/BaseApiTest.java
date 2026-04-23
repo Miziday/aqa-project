@@ -7,6 +7,6 @@ public class BaseApiTest {
 
     @BeforeMethod
     public void setUp() {
-        RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
+        RestAssured.baseURI = "http://127.0.0.1:8000";
     }
 }
