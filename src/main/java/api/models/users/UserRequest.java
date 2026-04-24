@@ -7,7 +7,7 @@ import lombok.Getter;
 @Builder
 public class UserRequest {
 
-    int id;
+    String id;
     String name;
     String email;
 

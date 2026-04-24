@@ -8,33 +8,32 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
+import static utils.RandomData.*;
 
 public class FirstApiTest extends BaseApiTest {
 
     @Test
-    public void getUserById() {
-
-        UserResponse response = given().when().get("/users/1").then().extract().as(UserResponse.class);
-
-        Assert.assertEquals(response.getId(), 1);
-        Assert.assertEquals(response.getName(), "Fixic");
-    }
-
-
-    @Test
     public void createNewUserCheck() {
 
-        UserRequest requestBody = UserRequest.builder().id(1).name("Fixic").email("1@mail.ru").build();
+        // Arrange
+        UserRequest requestBody = UserRequest.builder().id(getRandUUID()).name(getRandomString(10)).email(getRandEmail()).build();
 
-         UserResponse response = given()
+        //Act
+        UserResponse response = given()
                 .contentType(ContentType.JSON)
                 .body(requestBody)
             .when()
                 .post("/users").then().statusCode(201).extract().as(UserResponse.class);
 
-        Assert.assertEquals(response.getId(), requestBody.getId());
-        Assert.assertEquals(response.getName(), requestBody.getName());
-        Assert.assertEquals(response.getEmail(), requestBody.getEmail());
+        UserResponse getNewUser = given().when().get("/users/{user_id}", response.getId()).then().statusCode(200).extract().as(UserResponse.class);
+
+        //Assert
+        Assert.assertEquals(requestBody.getId(), getNewUser.getId());
+        Assert.assertEquals(requestBody.getName(), getNewUser.getName());
+        Assert.assertEquals(requestBody.getEmail(), getNewUser.getEmail());
+
+        //Cleanup
+        given().when().delete("/users/{user_id}", response.getId()).prettyPrint();
 
     }
 
