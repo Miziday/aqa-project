@@ -11,7 +11,7 @@ public class LoginPage extends BasePage {
 
     public LoginPage openPage() {
         return Allure.step("Открытие страницы", () -> {
-            open(ConfigReader.get("baseUrl"));
+            open(ConfigReader.get("baseUiUrl"));
             return this;
         });
 
