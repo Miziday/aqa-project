@@ -5,8 +5,9 @@
         <classes>
             <class name="tests.FirstApiTest">
                 <methods>
-                    <include name="getUserById"/>
                     <include name="createNewUserCheck"/>
+                    <include name="updateUserCheck"/>
+                    <include name="deleteUserCheck"/>
                 </methods>
             </class>
             <class name="tests.LoginUiTest">

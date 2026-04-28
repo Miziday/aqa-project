@@ -1,4 +1,4 @@
-package api.models.users;
+package api.models.user;
 
 import lombok.Getter;
 import lombok.Setter;
