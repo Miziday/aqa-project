@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="C:/Users/kunts/JavaProjects/PetProject/src/test/java/tests">
+    <test verbose="2" preserve-order="true" name="API and UI tests">
         <classes>
-            <class name="tests.FirstApiTest">
+            <class name="tests.api.FirstApiTest">
                 <methods>
                     <include name="createNewUserCheck"/>
                     <include name="updateUserCheck"/>
                     <include name="deleteUserCheck"/>
                 </methods>
             </class>
-            <class name="tests.LoginUiTest">
+            <class name="tests.ui.LoginUiTest">
                 <methods>
-                    <include name="successfulLoginTest"/>
-                    <include name="invalidLoginTest"/>
+                    <include name="checkSuccessfulLogin"/>
+                    <include name="checkInvalidLogin"/>
+                </methods>
+            </class>
+            <class name="tests.ui.ProductsTest">
+                <methods>
+                    <include name="checkGoodsMoreThenZero"/>
                 </methods>
             </class>
         </classes>

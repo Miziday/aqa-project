@@ -1,11 +1,10 @@
 package ui.pages;
 
-import com.codeborne.selenide.Condition;
 import config.ConfigReader;
 import io.qameta.allure.Allure;
 
-
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 public class LoginPage extends BasePage {
 
@@ -35,13 +34,6 @@ public class LoginPage extends BasePage {
         return Allure.step("Нажание на кнопку логина", () -> {
             $("#login-button").click();
             return new InventoryPage();
-        });
-    }
-
-    public LoginPage shouldShowError() {
-        return Allure.step("Отображение ошибки", () -> {
-            $x("//*[@data-test='error-button']//ancestor::div[1]").shouldBe(Condition.visible);
-            return this;
         });
     }
 

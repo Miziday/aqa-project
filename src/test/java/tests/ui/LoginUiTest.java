@@ -1,43 +1,44 @@
-package tests;
+package tests.ui;
 
 import ui.base.BaseUiTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ui.pages.InventoryPage;
 import ui.pages.LoginPage;
+import utils.AssertSteps;
 
 public class LoginUiTest extends BaseUiTest {
 
     @DataProvider
     public Object[][] invalidDataProvider() {
         return new Object[][] {
-                {"user1", "pass1"},
-                {"user2", "pass2"},
-                {"", "pass"},
-                {"user", ""}
+                {"user1", "pass1", "Epic sadface: Username and password do not match any user in this service"},
+                {"user2", "pass2", "Epic sadface: Username and password do not match any user in this service"},
+                {"", "pass", "Epic sadface: Username is required"},
+                {"user", "", "Epic sadface: Password is required"}
         };
     }
 
     @Test
-    public void successfulLoginTest() {
+    public void checkSuccessfulLogin() {
 
         InventoryPage inventoryPage = new LoginPage()
                 .openPage()
                 .enterUsername("standard_user")
                 .enterPassword("secret_sauce")
-                .clickLogin()
-                .shouldBeOpened();
+                .clickLogin();
+
+        AssertSteps.shouldBeOpenedInventoryPage();
     }
 
     @Test(dataProvider = "invalidDataProvider")
-    public void invalidLoginTest(String login, String pass) {
+    public void checkInvalidLogin(String login, String pass, String errorMessage) {
         new LoginPage()
                 .openPage()
                 .enterUsername(login)
                 .enterPassword(pass)
                 .clickLogin();
 
-        new LoginPage()
-                .shouldShowError();
+        AssertSteps.shouldShowErrorWithText(errorMessage);
     }
 }

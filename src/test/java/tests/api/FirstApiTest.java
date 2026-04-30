@@ -1,4 +1,4 @@
-package tests;
+package tests.api;
 
 import api.actions.UserApi;
 import api.base.BaseApiTest;
@@ -73,7 +73,6 @@ public class FirstApiTest extends BaseApiTest {
         UserApi.deleteUserById(userId);
 
         //Assert
-        // ОСТАНОВОЧКА - ВОЗМОЖНО НАДО БУДЕТ ПЕРЕОСМЫСЛИТЬ BaseApiMethods
         UserApi.getUserById(userId).then().statusCode(404);
 
     }
