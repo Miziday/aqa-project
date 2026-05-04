@@ -1,8 +1,8 @@
 package tests.ui;
 
-import ui.base.BaseUiTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ui.base.BaseUiTest;
 import ui.pages.InventoryPage;
 import ui.pages.LoginPage;
 import utils.AssertSteps;
@@ -40,5 +40,13 @@ public class LoginUiTest extends BaseUiTest {
                 .clickLogin();
 
         AssertSteps.shouldShowErrorWithText(errorMessage);
+    }
+
+    @Test
+    public void checkClickableLoginButton() {
+
+        new LoginPage().openPage();
+
+        AssertSteps.loginButtonShouldBeClickable();
     }
 }

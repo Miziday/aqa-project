@@ -20,4 +20,17 @@ public class ProductsTest extends BaseUiTest {
         AssertSteps.shouldHaveMoreThenZeroGoods();
     }
 
+    @Test
+    public void checkPointsOfSidebarMenu() {
+
+        InventoryPage inventoryPage = new LoginPage()
+                .openPage()
+                .enterUsername("standard_user")
+                .enterPassword("secret_sauce")
+                .clickLogin()
+                .sideBarMenuClick();
+
+        AssertSteps.allPointsSidebarMenuShouldBeVisible();
+    }
+
 }
