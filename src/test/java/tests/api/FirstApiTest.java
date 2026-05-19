@@ -5,11 +5,13 @@ import api.base.BaseApiTest;
 import api.models.user.UserRequest;
 import api.models.user.UserResponse;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import utils.UserData;
 
 import static utils.RandomData.getRandUUID;
 
+@Listeners(infostructure.Listeners.class)
 public class FirstApiTest extends BaseApiTest {
 
     @Test

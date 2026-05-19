@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="UI Tests Suite"
+       parallel="methods"
+       thread-count="3"
+       data-provider-thread-count="3">
+    <listeners>
+        <listener class-name="org.selenide.videorecorder.testng.VideoRecorderListener"/>
+    </listeners>
+
+    <test name="My UI Test Suite">
+        <packages>
+            <package name="tests.ui"/>
+        </packages>
+    </test>
+</suite>
