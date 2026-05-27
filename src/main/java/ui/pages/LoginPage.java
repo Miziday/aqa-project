@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static ui.base.conditions.CustomConditions.hasName;
+import static ui.base.conditions.CustomConditions.readyToUse;
 
 @Slf4j
 public class LoginPage extends BasePage {
@@ -21,7 +23,7 @@ public class LoginPage extends BasePage {
 
     public LoginPage enterUsername(String username) {
         return Allure.step("Ввод username " + username, () -> {
-            $("#user-name").setValue(username);
+            $("#user-name").shouldBe(readyToUse).shouldHave(hasName("user-name")).setValue(username);
             return this;
         });
     }
@@ -34,7 +36,7 @@ public class LoginPage extends BasePage {
     }
 
     public InventoryPage clickLogin() {
-        return Allure.step("Нажание на кнопку логина", () -> {
+        return Allure.step("Нажатие на кнопку логина", () -> {
             $("#login-button").click();
             return new InventoryPage();
         });
