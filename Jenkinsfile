@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Run tests') {
             steps {
-                sh 'mvn clean test -Dselenide.remote=http://selenium-chrome:4444/wd/hub'
+                sh 'mvn clean test'
             }
         }
     }
