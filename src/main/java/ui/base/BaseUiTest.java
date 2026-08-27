@@ -22,6 +22,7 @@ public class BaseUiTest {
         Configuration.browser = ConfigReader.get("browser");
         Configuration.browserSize = "1920x1080";
         Configuration.timeout = Long.parseLong(ConfigReader.get("timeout"));
+        Configuration.remote = "http://selenium-chrome:4444/wd/hub";
     }
 
     @AfterMethod(alwaysRun = true)

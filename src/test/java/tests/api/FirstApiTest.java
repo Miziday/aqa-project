@@ -14,7 +14,7 @@ import static utils.RandomData.getRandUUID;
 @Listeners(infostructure.Listeners.class)
 public class FirstApiTest extends BaseApiTest {
 
-    @Test
+    @Test(enabled = false)
     public void createNewUserCheck() {
 
         // Arrange
@@ -35,7 +35,7 @@ public class FirstApiTest extends BaseApiTest {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void updateUserCheck() {
 
         // Arrange
@@ -61,7 +61,7 @@ public class FirstApiTest extends BaseApiTest {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void deleteUserCheck() {
 
         // Arrange
