@@ -5,7 +5,7 @@ pipeline {
         choice(
                 name: 'TEST_SUITE',
                 choices: ['all', 'api', 'ui'],
-                description: 'Choose which tests to run'
+                description: 'Choose which TestNG suite to run'
         )
     }
 
@@ -18,15 +18,15 @@ pipeline {
         stage('Run tests') {
             steps {
                 script {
-                    def testCommand = 'mvn clean test'
+                    def suiteFile = 'testng-master.xml'
 
                     if (params.TEST_SUITE == 'api') {
-                        testCommand = 'mvn clean test -Papi'
+                        suiteFile = 'testng-api.xml'
                     } else if (params.TEST_SUITE == 'ui') {
-                        testCommand = 'mvn clean test -Pui'
+                        suiteFile = 'testng-ui.xml'
                     }
 
-                    sh testCommand
+                    sh "mvn clean test -Dsurefire.suiteXmlFiles=${suiteFile}"
                 }
             }
         }
