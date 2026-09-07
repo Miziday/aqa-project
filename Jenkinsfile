@@ -1,6 +1,15 @@
 pipeline {
     agent any
 
+    options {
+        buildDiscarder(logRotator(
+                daysToKeepStr: '14',
+                numToKeepStr: '5',
+                artifactDaysToKeepStr: '14',
+                artifactNumToKeepStr: '5'
+        ))
+    }
+
     parameters {
         choice(
                 name: 'TEST_SUITE',
@@ -43,6 +52,10 @@ pipeline {
                 reportBuildPolicy: 'ALWAYS',
                 results: [[path: 'target/allure-results']]
             ])
+        }
+
+        cleanup {
+            deleteDir()
         }
     }
 }
