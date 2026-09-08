@@ -13,7 +13,6 @@ import static ui.base.conditions.CustomConditions.readyToUse;
 public class LoginPage extends BasePage {
 
     public LoginPage openPage() {
-        log.info("asfdsfad");
         return Allure.step("Открытие страницы", () -> {
             open(ConfigReader.get("baseUiUrl"));
             return this;
