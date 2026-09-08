@@ -12,17 +12,22 @@ public class ConfigReader {
             // env задается параметром -Denv при запуске тестов
             // по умолчанию будет dev (второй параметр System.getProperty)
             String env = System.getProperty("env", "dev");
-            String fileName = "config-" + env + ".properties";
+            String envPropsFile = "config-" + env + ".properties";
+            String globalPropsFile = "global.properties";
 
-            InputStream input = ConfigReader.class
-                    .getClassLoader()
-                    .getResourceAsStream(fileName);
+            InputStream envPropsInput = ConfigReader.class.getClassLoader().getResourceAsStream(envPropsFile);
+            InputStream globalPropsInput = ConfigReader.class.getClassLoader().getResourceAsStream(globalPropsFile);
 
-            if (input == null) {
-                throw new RuntimeException("Config file not found: " + fileName);
+            if (envPropsInput == null) {
+                throw new RuntimeException("Config file not found: " + envPropsFile);
             }
 
-            properties.load(input);
+            if (globalPropsInput == null) {
+                throw new RuntimeException("Config file not found: " + globalPropsInput);
+            }
+
+            properties.load(envPropsInput);
+            properties.load(globalPropsInput);
 
         } catch (Exception e) {
             throw new RuntimeException("Failed to load config", e);
