@@ -24,7 +24,7 @@ public class LoginUiTest extends BaseUiTest {
 
         new LoginPage()
                 .openPage()
-                .enterUsername("standard_user")
+                .enterUsername("standard_usаer")
                 .enterPassword("secret_sauce")
                 .clickLogin();
 
