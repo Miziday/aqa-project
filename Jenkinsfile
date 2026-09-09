@@ -10,6 +10,11 @@ pipeline {
         ))
     }
 
+    triggers {
+        // Starts this pipeline when GitHub sends a push webhook to Jenkins.
+        githubPush()
+    }
+
     parameters {
         choice(
                 name: 'TEST_SUITE',
@@ -21,7 +26,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Miziday/aqa-project'
+                // Uses the repository and branch configured in the Jenkins job.
+                checkout scm
             }
         }
         stage('Run tests') {
