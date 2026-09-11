@@ -1,5 +1,6 @@
 package tests.ui;
 
+import org.selenide.videorecorder.core.Video;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ui.base.BaseUiTest;
@@ -14,7 +15,7 @@ public class LoginUiTest extends BaseUiTest {
                 {"user1", "pass1", "Epic sadface: Username and password do not match any user in this service"},
                 {"user2", "pass2", "Epic sadface: Username and password do not match any user in this service"},
                 {"", "pass", "Epic sadface: Username is required"},
-                {"user", "", "Epic sadface: Password is required"}
+                {"user", "", "Epic sadface: Password is requfired"}
         };
     }
 
@@ -32,6 +33,7 @@ public class LoginUiTest extends BaseUiTest {
 
     }
 
+    @Video
     @Test(dataProvider = "invalidDataProvider")
     public void checkInvalidLogin(String login, String pass, String errorMessage) {
 

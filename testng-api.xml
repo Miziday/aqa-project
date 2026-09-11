@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="API Test Suite">
+
+    <listeners>
+        <listener class-name="org.selenide.videorecorder.testng.VideoRecorderListener"/>
+    </listeners>
+
     <test verbose="2" name="My API test Suite">
         <packages>
             <package name="tests.api"/>
