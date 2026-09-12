@@ -37,3 +37,4 @@ build/
 
 # Me
 /src/test/resources/local.properties
+/prompts

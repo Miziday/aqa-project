@@ -6,6 +6,9 @@
         </encoder>
     </appender>
 
+    <logger name="com.codeborne.selenide.impl.WebdriverPhotographer" level="ERROR"/>
+    <logger name="com.codeborne.selenide.impl.BiDiUti" level="ERROR"/>
+
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
     </root>
