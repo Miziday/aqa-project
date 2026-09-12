@@ -5,8 +5,8 @@
        thread-count="3"
        data-provider-thread-count="3">
     <listeners>
-        <listener class-name="org.selenide.videorecorder.testng.VideoRecorderListener"/>
         <listener class-name="utils.AllureVideoAttachListener"/>
+        <listener class-name="org.selenide.videorecorder.testng.VideoRecorderListener"/>
     </listeners>
 
     <test name="My UI Test Suite">
