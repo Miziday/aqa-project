@@ -28,7 +28,7 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage enterPassword(String password) {
-        return Allure.step("Ввод password " + password, () -> {
+        return Allure.step("Ввод password", () -> {
             $("#password").hover().setValue(password);
             return this;
         }) ;

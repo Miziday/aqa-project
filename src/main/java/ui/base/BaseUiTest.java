@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
@@ -17,24 +18,28 @@ public class BaseUiTest {
 
     private static final Logger log = LoggerFactory.getLogger(BaseUiTest.class);
 
-    @BeforeMethod
-    public void setup(Method method) {
-
-        log.info("START TEST: {}.{}",
-                method.getDeclaringClass().getSimpleName(),
-                method.getName());
-
-        SelenideLogger.addListener("AllureSelenide",
-                new AllureSelenide()
-                        .screenshots(true)
-                        .savePageSource(true));
-
+    @BeforeSuite
+    public void configureSelenide() {
+        // Выполняется один раз до старта параллельных потоков, поэтому безопасно
+        // писать в статический Configuration без риска гонки между потоками.
         Configuration.browser = ConfigReader.get("browser");
         Configuration.browserSize = "1920x1080";
         Configuration.timeout = Long.parseLong(ConfigReader.get("timeout"));
         if (ConfigReader.get("remote.connection.use").equals("true")) {
             Configuration.remote = "http://selenium-chrome:4444/wd/hub";
         }
+
+        SelenideLogger.addListener("AllureSelenide",
+                new AllureSelenide()
+                        .screenshots(true)
+                        .savePageSource(true));
+    }
+
+    @BeforeMethod
+    public void setup(Method method) {
+        log.info("START TEST: {}.{}",
+                method.getDeclaringClass().getSimpleName(),
+                method.getName());
     }
 
     @AfterMethod(alwaysRun = true)
