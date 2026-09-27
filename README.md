@@ -6,9 +6,9 @@
 
 - **Java 17**, **Maven**
 - **TestNG 7.10** — тест-раннер, сьюты, параллельный запуск, DataProvider'ы
-- **Selenide 7.16** (+ `selenide-video-recorder`) — UI-тесты, видеозапись падений
+- **Selenide 7.16** — UI-тесты
 - **REST Assured 5.5** — API-тесты
-- **Allure 2.35** — отчётность (`allure-testng`, `allure-selenide`), скриншоты и видео крепятся к упавшим тестам
+- **Allure 2.35** — отчётность (`allure-testng`, `allure-selenide`), скриншоты крепятся к упавшим тестам
 - **Lombok**, **Jackson**, **SLF4J + Logback** — вспомогательные библиотеки
 - **Docker / Docker Compose** — Jenkins + Selenium Standalone Chrome
 - **Jenkins** (`Jenkinsfile`) — CI-пайплайн с выбором сьюта и публикацией Allure/JUnit отчётов
@@ -90,7 +90,7 @@ mvn clean test -Dbrowser=firefox -Dtimeout=15000
 
 ## Отчётность
 
-Тесты используют Allure listener (`io.qameta.allure.testng.AllureTestNg`), результаты пишутся в `target/allure-results`. Для UI-тестов дополнительно записывается видео упавших прогонов (`target/videos`, режим `FAILED_ONLY`).
+Тесты используют Allure listener (`io.qameta.allure.testng.AllureTestNg`), результаты пишутся в `target/allure-results`.
 
 Просмотр отчёта локально:
 ```bash

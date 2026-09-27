@@ -30,7 +30,7 @@
         <!-- Selenide -->
         <dependency>
             <groupId>com.codeborne</groupId>
-            <artifactId>selenide-video-recorder</artifactId>
+            <artifactId>selenide</artifactId>
             <version>${selenide.version}</version>
         </dependency>
 
@@ -96,10 +96,6 @@
 
                     <systemPropertyVariables>
                         <allure.results.directory>target/allure-results</allure.results.directory>
-
-                        <selenide.video.mode>ANNOTATED</selenide.video.mode>
-                        <selenide.video.save.mode>FAILED_ONLY</selenide.video.save.mode>
-                        <selenide.video.folder>target/videos</selenide.video.folder>
                     </systemPropertyVariables>
 
                     <properties>

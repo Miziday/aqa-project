@@ -1,6 +1,5 @@
 package tests.ui;
 
-import org.selenide.videorecorder.core.Video;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ui.base.BaseUiTest;
@@ -33,7 +32,6 @@ public class LoginUiTest extends BaseUiTest {
 
     }
 
-    @Video
     @Test(dataProvider = "invalidDataProvider")
     public void checkInvalidLogin(String login, String pass, String errorMessage) {
 
