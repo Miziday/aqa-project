@@ -14,7 +14,7 @@ public class LoginUiTest extends BaseUiTest {
                 {"user1", "pass1", "Epic sadface: Username and password do not match any user in this service"},
                 {"user2", "pass2", "Epic sadface: Username and password do not match any user in this service"},
                 {"", "pass", "Epic sadface: Username is required"},
-                {"user", "", "Epic sadface: Password is requfired"}
+                {"user", "", "Epic sadface: Password is required"}
         };
     }
 
