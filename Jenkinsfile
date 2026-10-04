@@ -16,6 +16,11 @@ pipeline {
     }
 
     parameters {
+        string(
+                name: 'BRANCH',
+                defaultValue: 'main',
+                description: 'Git branch to run the tests on (e.g. main, feature/my-task)'
+        )
         choice(
                 name: 'TEST_SUITE',
                 choices: ['all', 'api', 'ui'],
@@ -26,8 +31,18 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Uses the repository and branch configured in the Jenkins job.
-                checkout scm
+                script {
+                    def branch = params.BRANCH?.trim() ?: 'main'
+                    currentBuild.displayName = "#${env.BUILD_NUMBER} ${branch}"
+
+                    // Reuses repo URL and credentials from the job's SCM config,
+                    // but checks out the branch chosen in the BRANCH parameter.
+                    checkout([
+                            $class           : 'GitSCM',
+                            branches         : [[name: "*/${branch}"]],
+                            userRemoteConfigs: scm.userRemoteConfigs
+                    ])
+                }
             }
         }
         stage('Run tests') {
