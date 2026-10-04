@@ -16,11 +16,16 @@ pipeline {
     }
 
     parameters {
-        string(
-                name: 'BRANCH',
-                defaultValue: 'main',
-                description: 'Git branch to run the tests on (e.g. main, feature/my-task)'
-        )
+        gitParameter(
+                    name: 'BRANCH',
+                    type: 'PT_BRANCH',
+                    branchFilter: 'origin/(.*)',   // убирает префикс origin/ из имён
+                    defaultValue: 'main',
+                    sortMode: 'DESCENDING_SMART',
+                    selectedValue: 'DEFAULT',
+                    quickFilterEnabled: true,
+                    description: 'Git branch to run the tests on'
+            )
         choice(
                 name: 'TEST_SUITE',
                 choices: ['all', 'api', 'ui'],
