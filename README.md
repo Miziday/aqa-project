@@ -105,6 +105,22 @@ mvn allure:serve
 3. Запуск `mvn clean test` с соответствующим TestNG-сьютом
 4. Публикация JUnit- и Allure-отчётов
 
+## Версионирование (GitVersion)
+
+Версия считается автоматически из истории git по правилам `GitVersion.yml` (workflow `GitHubFlow/v1`):
+
+| Ветка | Пример версии |
+|---|---|
+| `main` | `1.0.1` |
+| `feature/login` | `1.0.1-login.3` |
+| любая другая дочерняя ветка | `1.0.1-<имя-ветки>.3` |
+
+- В Jenkins отдельная стадия `Version` выполняет `gitversion /showvariable SemVer`, результат попадает в имя билда и передаётся в Maven через `-Drevision` (в `pom.xml` версия — `${revision}`, локально по умолчанию `1.0.0-SNAPSHOT`).
+- Чтобы зафиксировать релиз и сдвинуть номер, поставьте тег на коммит в `main`: `git tag v1.1.0 && git push origin v1.1.0`. После первого тега строку `next-version` в `GitVersion.yml` можно удалить.
+- Повысить мажорную/минорную версию можно и без тега: добавьте в сообщение коммита `+semver: major` или `+semver: minor`.
+- GitVersion требует полной истории git (не shallow clone) и тегов — в Jenkinsfile это учтено в стадии Checkout.
+- Проверка локально (через Docker, из корня репозитория): `docker run --rm -v "%cd%:/repo" gittools/gitversion:latest-debian.12 /repo`.
+
 ## TestNG-сьюты
 
 - `testng-master.xml` — запускает `testng-api.xml` + `testng-ui.xml`
