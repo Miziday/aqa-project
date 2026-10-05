@@ -38,15 +38,28 @@ pipeline {
             steps {
                 script {
                     def branch = params.BRANCH?.trim() ?: 'main'
-                    currentBuild.displayName = "#${env.BUILD_NUMBER} ${branch}"
 
                     // Reuses repo URL and credentials from the job's SCM config,
                     // but checks out the branch chosen in the BRANCH parameter.
+                    // GitVersion needs full history + tags and a real local branch (not detached HEAD).
                     checkout([
                             $class           : 'GitSCM',
                             branches         : [[name: "*/${branch}"]],
-                            userRemoteConfigs: scm.userRemoteConfigs
+                            userRemoteConfigs: scm.userRemoteConfigs,
+                            extensions       : [
+                                    [$class: 'CloneOption', shallow: false, noTags: false],
+                                    [$class: 'LocalBranch', localBranch: branch]
+                            ]
                     ])
+                }
+            }
+        }
+        stage('Version') {
+            steps {
+                script {
+                    env.APP_VERSION = sh(script: 'gitversion /showvariable SemVer', returnStdout: true).trim()
+                    currentBuild.displayName = "#${env.BUILD_NUMBER} ${env.APP_VERSION}"
+                    echo "Version: ${env.APP_VERSION}"
                 }
             }
         }
@@ -61,7 +74,7 @@ pipeline {
                         suiteFile = 'testng-ui.xml'
                     }
 
-                    sh "mvn clean test -Dsurefire.suiteXmlFiles=${suiteFile}"
+                    sh "mvn clean test -Drevision=${env.APP_VERSION} -Dsurefire.suiteXmlFiles=${suiteFile}"
                 }
             }
         }
