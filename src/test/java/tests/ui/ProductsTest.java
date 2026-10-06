@@ -35,6 +35,7 @@ public class ProductsTest extends BaseUiTest {
                 .enterPassword("secret_sauce")
                 .clickLogin()
                 .sideBarMenuClick();
+
         AssertSteps.allPointsSidebarMenuShouldBeVisible();
     }
 
