@@ -21,7 +21,6 @@ public class ProductsTest extends BaseUiTest {
                 .enterUsername("standard_user")
                 .enterPassword("secret_sauce")
                 .clickLogin();
-
         AssertSteps.shouldHaveMoreThenZeroGoods();
 
     }
