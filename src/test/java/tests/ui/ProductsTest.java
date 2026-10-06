@@ -28,6 +28,7 @@ public class ProductsTest extends BaseUiTest {
     @Test
     public void checkPointsOfSidebarMenu() {
 
+
         InventoryPage inventoryPage = new LoginPage()
                 .openPage()
                 .enterUsername("standard_user")
