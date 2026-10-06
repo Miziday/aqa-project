@@ -37,7 +37,6 @@ public class ProductsTest extends BaseUiTest {
                 .sideBarMenuClick();
 
         AssertSteps.allPointsSidebarMenuShouldBeVisible();
-
     }
 
 }
