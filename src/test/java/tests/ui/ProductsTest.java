@@ -20,7 +20,6 @@ public class ProductsTest extends BaseUiTest {
 //                .enterUsername(flackData.get(ThreadLocalRandom.current().nextInt(flackData.size() - 1)))
                 .enterUsername("standard_user")
                 .enterPassword("secret_sauce")
-
                 .clickLogin();
         
         AssertSteps.shouldHaveMoreThenZeroGoods();
