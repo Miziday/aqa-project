@@ -65,7 +65,7 @@ pipeline {
                     if (branch == 'main') {
                         // main: total number of commits in the branch history
                         def commits = sh(script: 'git rev-list --count HEAD', returnStdout: true).trim()
-                        env.APP_VERSION = "${env.BASE_VERSION}-${commits}"
+                        env.APP_VERSION = "${env.BASE_VERSION}-main-${commits}"
                     } else {
                         // other branches: number of commits made in this branch since it diverged from main
                         def commits = sh(script: 'git rev-list --count origin/main..HEAD', returnStdout: true).trim()
