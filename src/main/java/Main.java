@@ -7,4 +7,13 @@ public class Main {
         System.out.println("Hello");
     }
 
+
+
+
+
+
+    public static void hello2() {
+        System.out.println("Hell2o");
+    }
+
 }
